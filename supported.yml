@@ -1,0 +1,63 @@
+datasources:
+  - model_name: app_group
+    oas_endpoint: /apps/remotewrite.eda.nokia.com
+    oas_schema: AppGroup
+  - model_name: resource_list
+    oas_endpoint: /apps/remotewrite.eda.nokia.com/v1
+    oas_schema: ResourceList
+  - model_name: cluster_destination_list
+    oas_endpoint: /apps/remotewrite.eda.nokia.com/v1/clusterdestinations
+    oas_schema: com.nokia.eda.remotewrite.v1.ClusterDestinationList
+  - model_name: cluster_destination
+    oas_endpoint: /apps/remotewrite.eda.nokia.com/v1/clusterdestinations/{name}
+    oas_schema: com.nokia.eda.remotewrite.v1.ClusterDestination
+  - model_name: cluster_export_list
+    oas_endpoint: /apps/remotewrite.eda.nokia.com/v1/clusterexports
+    oas_schema: com.nokia.eda.remotewrite.v1.ClusterExportList
+  - model_name: cluster_export
+    oas_endpoint: /apps/remotewrite.eda.nokia.com/v1/clusterexports/{name}
+    oas_schema: com.nokia.eda.remotewrite.v1.ClusterExport
+  - model_name: destination_list
+    oas_endpoint: /apps/remotewrite.eda.nokia.com/v1/namespaces/{namespace}/destinations
+    oas_schema: com.nokia.eda.remotewrite.v1.DestinationList
+  - model_name: destination
+    oas_endpoint: /apps/remotewrite.eda.nokia.com/v1/namespaces/{namespace}/destinations/{name}
+    oas_schema: com.nokia.eda.remotewrite.v1.Destination
+  - model_name: export_list
+    oas_endpoint: /apps/remotewrite.eda.nokia.com/v1/namespaces/{namespace}/exports
+    oas_schema: com.nokia.eda.remotewrite.v1.ExportList
+  - model_name: export
+    oas_endpoint: /apps/remotewrite.eda.nokia.com/v1/namespaces/{namespace}/exports/{name}
+    oas_schema: com.nokia.eda.remotewrite.v1.Export
+
+resources:
+  - model_name: cluster_destination
+    oas_endpoint: /apps/remotewrite.eda.nokia.com/v1/clusterdestinations
+    oas_schema: com.nokia.eda.remotewrite.v1.ClusterDestination
+  - model_name: cluster_export
+    oas_endpoint: /apps/remotewrite.eda.nokia.com/v1/clusterexports
+    oas_schema: com.nokia.eda.remotewrite.v1.ClusterExport
+  - model_name: destination
+    oas_endpoint: /apps/remotewrite.eda.nokia.com/v1/namespaces/{namespace}/destinations
+    oas_schema: com.nokia.eda.remotewrite.v1.Destination
+  - model_name: export
+    oas_endpoint: /apps/remotewrite.eda.nokia.com/v1/namespaces/{namespace}/exports
+    oas_schema: com.nokia.eda.remotewrite.v1.Export
+
+qualified:
+  datasources:
+    - oas_schema: IntentTargets
+      get: /apps/remotewrite.eda.nokia.com/v1/clusterdestinations/{name}/_targets
+    - oas_schema: ResourceHistory
+      get: /apps/remotewrite.eda.nokia.com/v1/clusterdestinations/{name}/_revs
+    - oas_schema: UIResult
+      get: /apps/remotewrite.eda.nokia.com/v1/_ui/{pathname}
+    - oas_schema: com.nokia.eda.remotewrite.v1.ClusterDestination_DeletedResources
+      get: /apps/remotewrite.eda.nokia.com/v1/clusterdestinations/_deleted
+    - oas_schema: com.nokia.eda.remotewrite.v1.ClusterExport_DeletedResources
+      get: /apps/remotewrite.eda.nokia.com/v1/clusterexports/_deleted
+    - oas_schema: com.nokia.eda.remotewrite.v1.Destination_DeletedResources
+      get: /apps/remotewrite.eda.nokia.com/v1/namespaces/{namespace}/destinations/_deleted
+    - oas_schema: com.nokia.eda.remotewrite.v1.Export_DeletedResources
+      get: /apps/remotewrite.eda.nokia.com/v1/namespaces/{namespace}/exports/_deleted
+  resources:
