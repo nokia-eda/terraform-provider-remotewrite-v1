@@ -105,7 +105,7 @@ func ExportListDataSourceSchema(ctx context.Context) schema.Schema {
 							Attributes: map[string]schema.Attribute{
 								"destinations": schema.ListAttribute{
 									ElementType:         types.StringType,
-									Optional:            true,
+									Computed:            true,
 									Description:         "List of remote destination names where metrics will be written.",
 									MarkdownDescription: "List of remote destination names where metrics will be written.",
 								},
@@ -114,12 +114,12 @@ func ExportListDataSourceSchema(ctx context.Context) schema.Schema {
 										Attributes: map[string]schema.Attribute{
 											"fields": schema.ListAttribute{
 												ElementType:         types.StringType,
-												Optional:            true,
+												Computed:            true,
 												Description:         "Optional set of fields to be exposed by this export.",
 												MarkdownDescription: "Optional set of fields to be exposed by this export.",
 											},
 											"interval": schema.StringAttribute{
-												Optional:            true,
+												Computed:            true,
 												Description:         "Period defines the frequency at which the metric is polled.",
 												MarkdownDescription: "Period defines the frequency at which the metric is polled.",
 											},
@@ -129,22 +129,22 @@ func ExportListDataSourceSchema(ctx context.Context) schema.Schema {
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"field": schema.StringAttribute{
-																	Optional:            true,
+																	Computed:            true,
 																	Description:         "The field name to add as a label",
 																	MarkdownDescription: "The field name to add as a label",
 																},
 																"path": schema.StringAttribute{
-																	Optional:            true,
+																	Computed:            true,
 																	Description:         "The state DB path to export, in the format '.node.srl.interface'",
 																	MarkdownDescription: "The state DB path to export, in the format '.node.srl.interface'",
 																},
 																"regex": schema.StringAttribute{
-																	Optional:            true,
+																	Computed:            true,
 																	Description:         "A regular expression to be applied to the field value.",
 																	MarkdownDescription: "A regular expression to be applied to the field value.",
 																},
 																"replacement": schema.StringAttribute{
-																	Optional:            true,
+																	Computed:            true,
 																	Description:         "A regular expression replacement to be applied to the field value.",
 																	MarkdownDescription: "A regular expression replacement to be applied to the field value.",
 																},
@@ -155,7 +155,7 @@ func ExportListDataSourceSchema(ctx context.Context) schema.Schema {
 																},
 															},
 														},
-														Optional:            true,
+														Computed:            true,
 														Description:         "List of dynamic labels to add to the metrics, based on a state DB path.",
 														MarkdownDescription: "List of dynamic labels to add to the metrics, based on a state DB path.",
 													},
@@ -163,12 +163,12 @@ func ExportListDataSourceSchema(ctx context.Context) schema.Schema {
 														NestedObject: schema.NestedAttributeObject{
 															Attributes: map[string]schema.Attribute{
 																"name": schema.StringAttribute{
-																	Optional:            true,
+																	Computed:            true,
 																	Description:         "Label name.",
 																	MarkdownDescription: "Label name.",
 																},
 																"value": schema.StringAttribute{
-																	Optional:            true,
+																	Computed:            true,
 																	Description:         "Label value.",
 																	MarkdownDescription: "Label value.",
 																},
@@ -179,7 +179,7 @@ func ExportListDataSourceSchema(ctx context.Context) schema.Schema {
 																},
 															},
 														},
-														Optional:            true,
+														Computed:            true,
 														Description:         "List of static labels to add to the metrics.",
 														MarkdownDescription: "List of static labels to add to the metrics.",
 													},
@@ -189,7 +189,7 @@ func ExportListDataSourceSchema(ctx context.Context) schema.Schema {
 														AttrTypes: LabelsValue{}.AttributeTypes(ctx),
 													},
 												},
-												Optional:            true,
+												Computed:            true,
 												Description:         "Allows adding static or dynamic labels to the metrics.",
 												MarkdownDescription: "Allows adding static or dynamic labels to the metrics.",
 											},
@@ -197,12 +197,12 @@ func ExportListDataSourceSchema(ctx context.Context) schema.Schema {
 												NestedObject: schema.NestedAttributeObject{
 													Attributes: map[string]schema.Attribute{
 														"destination": schema.StringAttribute{
-															Optional:            true,
+															Computed:            true,
 															Description:         "The new value for the mapped source (must convert to float64).",
 															MarkdownDescription: "The new value for the mapped source (must convert to float64).",
 														},
 														"source": schema.StringAttribute{
-															Optional:            true,
+															Computed:            true,
 															Description:         "The value to be mapped (supports regex with capture groups).",
 															MarkdownDescription: "The value to be mapped (supports regex with capture groups).",
 														},
@@ -213,19 +213,19 @@ func ExportListDataSourceSchema(ctx context.Context) schema.Schema {
 														},
 													},
 												},
-												Optional:            true,
+												Computed:            true,
 												Description:         "Rules for mapping metric values (e.g., DOWN -> 1, UP -> 2).",
 												MarkdownDescription: "Rules for mapping metric values (e.g., DOWN -> 1, UP -> 2).",
 											},
 											"metric_name": schema.SingleNestedAttribute{
 												Attributes: map[string]schema.Attribute{
 													"regex": schema.StringAttribute{
-														Optional:            true,
+														Computed:            true,
 														Description:         "Regular expression for the metric name transformation.",
 														MarkdownDescription: "Regular expression for the metric name transformation.",
 													},
 													"replacement": schema.StringAttribute{
-														Optional:            true,
+														Computed:            true,
 														Description:         "Replacement string for the transformed metric name.",
 														MarkdownDescription: "Replacement string for the transformed metric name.",
 													},
@@ -235,45 +235,45 @@ func ExportListDataSourceSchema(ctx context.Context) schema.Schema {
 														AttrTypes: MetricNameValue{}.AttributeTypes(ctx),
 													},
 												},
-												Optional:            true,
+												Computed:            true,
 												Description:         "Regex and replacement for renaming the metric name.",
 												MarkdownDescription: "Regex and replacement for renaming the metric name.",
 											},
 											"mode": schema.StringAttribute{
-												Optional:            true,
+												Computed:            true,
 												Description:         "Mode defines how the metric is collected: periodic, on-change, or periodic-on-change.",
 												MarkdownDescription: "Mode defines how the metric is collected: periodic, on-change, or periodic-on-change.",
 											},
 											"path": schema.StringAttribute{
-												Optional:            true,
+												Computed:            true,
 												Description:         "The state DB path to export, in the format '.node.srl.interface'",
 												MarkdownDescription: "The state DB path to export, in the format '.node.srl.interface'",
 											},
 											"resource": schema.SingleNestedAttribute{
 												Attributes: map[string]schema.Attribute{
 													"group": schema.StringAttribute{
-														Optional:            true,
+														Computed:            true,
 														Description:         "The CR group such as `core.eda.nokia.com`.",
 														MarkdownDescription: "The CR group such as `core.eda.nokia.com`.",
 													},
 													"kind": schema.StringAttribute{
-														Optional:            true,
+														Computed:            true,
 														Description:         "The CR kind such as `toponode`.",
 														MarkdownDescription: "The CR kind such as `toponode`.",
 													},
 													"labels": schema.ListAttribute{
 														ElementType:         types.StringType,
-														Optional:            true,
+														Computed:            true,
 														Description:         "List of labels to include with the metric.\nInclude all if not set.",
 														MarkdownDescription: "List of labels to include with the metric.\nInclude all if not set.",
 													},
 													"name": schema.StringAttribute{
-														Optional:            true,
+														Computed:            true,
 														Description:         "CR name to be queried.\nGet all of not set.",
 														MarkdownDescription: "CR name to be queried.\nGet all of not set.",
 													},
 													"version": schema.StringAttribute{
-														Optional:            true,
+														Computed:            true,
 														Description:         "The CR version such as `v1` or `v1alpha1`.",
 														MarkdownDescription: "The CR version such as `v1` or `v1alpha1`.",
 													},
@@ -283,12 +283,12 @@ func ExportListDataSourceSchema(ctx context.Context) schema.Schema {
 														AttrTypes: ResourceValue{}.AttributeTypes(ctx),
 													},
 												},
-												Optional:            true,
+												Computed:            true,
 												Description:         "A Custom resource to be used as a source for the metric.\nIt will generate a metric with the CR labels and a value of 1.",
 												MarkdownDescription: "A Custom resource to be used as a source for the metric.\nIt will generate a metric with the CR labels and a value of 1.",
 											},
 											"where": schema.StringAttribute{
-												Optional:            true,
+												Computed:            true,
 												Description:         "Condition for filtering the metric (e.g., 'oper-state = down').",
 												MarkdownDescription: "Condition for filtering the metric (e.g., 'oper-state = down').",
 											},
@@ -299,7 +299,7 @@ func ExportListDataSourceSchema(ctx context.Context) schema.Schema {
 											},
 										},
 									},
-									Optional:            true,
+									Computed:            true,
 									Description:         "List of metrics and their sources to be written to a remote server.\nMetrics will be sent using the Prometheus remote write protocol.",
 									MarkdownDescription: "List of metrics and their sources to be written to a remote server.\nMetrics will be sent using the Prometheus remote write protocol.",
 								},
@@ -309,7 +309,7 @@ func ExportListDataSourceSchema(ctx context.Context) schema.Schema {
 									AttrTypes: SpecValue{}.AttributeTypes(ctx),
 								},
 							},
-							Optional:            true,
+							Computed:            true,
 							Description:         "ExportSpec defines the desired state of Export",
 							MarkdownDescription: "ExportSpec defines the desired state of Export",
 						},

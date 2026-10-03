@@ -35,10 +35,6 @@ description: |-
 <a id="nestedatt--items"></a>
 ### Nested Schema for `items`
 
-Optional:
-
-- `spec` (Attributes) ExportSpec defines the desired state of Export (see [below for nested schema](#nestedatt--items--spec))
-
 Read-Only:
 
 - `alarms` (Attributes) (see [below for nested schema](#nestedatt--items--alarms))
@@ -46,95 +42,8 @@ Read-Only:
 - `deviations` (Attributes) (see [below for nested schema](#nestedatt--items--deviations))
 - `kind` (String)
 - `metadata` (Attributes) (see [below for nested schema](#nestedatt--items--metadata))
+- `spec` (Attributes) ExportSpec defines the desired state of Export (see [below for nested schema](#nestedatt--items--spec))
 - `status` (Attributes) ExportStatus defines the observed state of Export (see [below for nested schema](#nestedatt--items--status))
-
-<a id="nestedatt--items--spec"></a>
-### Nested Schema for `items.spec`
-
-Optional:
-
-- `destinations` (List of String) List of remote destination names where metrics will be written.
-- `exports` (Attributes List) List of metrics and their sources to be written to a remote server.
-Metrics will be sent using the Prometheus remote write protocol. (see [below for nested schema](#nestedatt--items--spec--exports))
-
-<a id="nestedatt--items--spec--exports"></a>
-### Nested Schema for `items.spec.exports`
-
-Optional:
-
-- `fields` (List of String) Optional set of fields to be exposed by this export.
-- `interval` (String) Period defines the frequency at which the metric is polled.
-- `labels` (Attributes) Allows adding static or dynamic labels to the metrics. (see [below for nested schema](#nestedatt--items--spec--exports--labels))
-- `mappings` (Attributes List) Rules for mapping metric values (e.g., DOWN -> 1, UP -> 2). (see [below for nested schema](#nestedatt--items--spec--exports--mappings))
-- `metric_name` (Attributes) Regex and replacement for renaming the metric name. (see [below for nested schema](#nestedatt--items--spec--exports--metric_name))
-- `mode` (String) Mode defines how the metric is collected: periodic, on-change, or periodic-on-change.
-- `path` (String) The state DB path to export, in the format '.node.srl.interface'
-- `resource` (Attributes) A Custom resource to be used as a source for the metric.
-It will generate a metric with the CR labels and a value of 1. (see [below for nested schema](#nestedatt--items--spec--exports--resource))
-- `where` (String) Condition for filtering the metric (e.g., 'oper-state = down').
-
-<a id="nestedatt--items--spec--exports--labels"></a>
-### Nested Schema for `items.spec.exports.labels`
-
-Optional:
-
-- `dynamic` (Attributes List) List of dynamic labels to add to the metrics, based on a state DB path. (see [below for nested schema](#nestedatt--items--spec--exports--labels--dynamic))
-- `static` (Attributes List) List of static labels to add to the metrics. (see [below for nested schema](#nestedatt--items--spec--exports--labels--static))
-
-<a id="nestedatt--items--spec--exports--labels--dynamic"></a>
-### Nested Schema for `items.spec.exports.labels.dynamic`
-
-Optional:
-
-- `field` (String) The field name to add as a label
-- `path` (String) The state DB path to export, in the format '.node.srl.interface'
-- `regex` (String) A regular expression to be applied to the field value.
-- `replacement` (String) A regular expression replacement to be applied to the field value.
-
-
-<a id="nestedatt--items--spec--exports--labels--static"></a>
-### Nested Schema for `items.spec.exports.labels.static`
-
-Optional:
-
-- `name` (String) Label name.
-- `value` (String) Label value.
-
-
-
-<a id="nestedatt--items--spec--exports--mappings"></a>
-### Nested Schema for `items.spec.exports.mappings`
-
-Optional:
-
-- `destination` (String) The new value for the mapped source (must convert to float64).
-- `source` (String) The value to be mapped (supports regex with capture groups).
-
-
-<a id="nestedatt--items--spec--exports--metric_name"></a>
-### Nested Schema for `items.spec.exports.metric_name`
-
-Optional:
-
-- `regex` (String) Regular expression for the metric name transformation.
-- `replacement` (String) Replacement string for the transformed metric name.
-
-
-<a id="nestedatt--items--spec--exports--resource"></a>
-### Nested Schema for `items.spec.exports.resource`
-
-Optional:
-
-- `group` (String) The CR group such as `core.eda.nokia.com`.
-- `kind` (String) The CR kind such as `toponode`.
-- `labels` (List of String) List of labels to include with the metric.
-Include all if not set.
-- `name` (String) CR name to be queried.
-Get all of not set.
-- `version` (String) The CR version such as `v1` or `v1alpha1`.
-
-
-
 
 <a id="nestedatt--items--alarms"></a>
 ### Nested Schema for `items.alarms`
@@ -164,6 +73,94 @@ Read-Only:
 - `labels` (Map of String)
 - `name` (String)
 - `namespace` (String)
+
+
+<a id="nestedatt--items--spec"></a>
+### Nested Schema for `items.spec`
+
+Read-Only:
+
+- `destinations` (List of String) List of remote destination names where metrics will be written.
+- `exports` (Attributes List) List of metrics and their sources to be written to a remote server.
+Metrics will be sent using the Prometheus remote write protocol. (see [below for nested schema](#nestedatt--items--spec--exports))
+
+<a id="nestedatt--items--spec--exports"></a>
+### Nested Schema for `items.spec.exports`
+
+Read-Only:
+
+- `fields` (List of String) Optional set of fields to be exposed by this export.
+- `interval` (String) Period defines the frequency at which the metric is polled.
+- `labels` (Attributes) Allows adding static or dynamic labels to the metrics. (see [below for nested schema](#nestedatt--items--spec--exports--labels))
+- `mappings` (Attributes List) Rules for mapping metric values (e.g., DOWN -> 1, UP -> 2). (see [below for nested schema](#nestedatt--items--spec--exports--mappings))
+- `metric_name` (Attributes) Regex and replacement for renaming the metric name. (see [below for nested schema](#nestedatt--items--spec--exports--metric_name))
+- `mode` (String) Mode defines how the metric is collected: periodic, on-change, or periodic-on-change.
+- `path` (String) The state DB path to export, in the format '.node.srl.interface'
+- `resource` (Attributes) A Custom resource to be used as a source for the metric.
+It will generate a metric with the CR labels and a value of 1. (see [below for nested schema](#nestedatt--items--spec--exports--resource))
+- `where` (String) Condition for filtering the metric (e.g., 'oper-state = down').
+
+<a id="nestedatt--items--spec--exports--labels"></a>
+### Nested Schema for `items.spec.exports.labels`
+
+Read-Only:
+
+- `dynamic` (Attributes List) List of dynamic labels to add to the metrics, based on a state DB path. (see [below for nested schema](#nestedatt--items--spec--exports--labels--dynamic))
+- `static` (Attributes List) List of static labels to add to the metrics. (see [below for nested schema](#nestedatt--items--spec--exports--labels--static))
+
+<a id="nestedatt--items--spec--exports--labels--dynamic"></a>
+### Nested Schema for `items.spec.exports.labels.dynamic`
+
+Read-Only:
+
+- `field` (String) The field name to add as a label
+- `path` (String) The state DB path to export, in the format '.node.srl.interface'
+- `regex` (String) A regular expression to be applied to the field value.
+- `replacement` (String) A regular expression replacement to be applied to the field value.
+
+
+<a id="nestedatt--items--spec--exports--labels--static"></a>
+### Nested Schema for `items.spec.exports.labels.static`
+
+Read-Only:
+
+- `name` (String) Label name.
+- `value` (String) Label value.
+
+
+
+<a id="nestedatt--items--spec--exports--mappings"></a>
+### Nested Schema for `items.spec.exports.mappings`
+
+Read-Only:
+
+- `destination` (String) The new value for the mapped source (must convert to float64).
+- `source` (String) The value to be mapped (supports regex with capture groups).
+
+
+<a id="nestedatt--items--spec--exports--metric_name"></a>
+### Nested Schema for `items.spec.exports.metric_name`
+
+Read-Only:
+
+- `regex` (String) Regular expression for the metric name transformation.
+- `replacement` (String) Replacement string for the transformed metric name.
+
+
+<a id="nestedatt--items--spec--exports--resource"></a>
+### Nested Schema for `items.spec.exports.resource`
+
+Read-Only:
+
+- `group` (String) The CR group such as `core.eda.nokia.com`.
+- `kind` (String) The CR kind such as `toponode`.
+- `labels` (List of String) List of labels to include with the metric.
+Include all if not set.
+- `name` (String) CR name to be queried.
+Get all of not set.
+- `version` (String) The CR version such as `v1` or `v1alpha1`.
+
+
 
 
 <a id="nestedatt--items--status"></a>

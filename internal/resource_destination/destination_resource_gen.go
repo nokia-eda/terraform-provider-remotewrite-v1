@@ -130,11 +130,13 @@ func DestinationResourceSchema(ctx context.Context) schema.Schema {
 						Attributes: map[string]schema.Attribute{
 							"password": schema.StringAttribute{
 								Optional:            true,
+								Computed:            true,
 								Description:         "Client password",
 								MarkdownDescription: "Client password",
 							},
 							"username": schema.StringAttribute{
 								Optional:            true,
+								Computed:            true,
 								Description:         "Client username",
 								MarkdownDescription: "Client username",
 							},
@@ -145,6 +147,7 @@ func DestinationResourceSchema(ctx context.Context) schema.Schema {
 							},
 						},
 						Optional:            true,
+						Computed:            true,
 						Description:         "Authentication details (username and password) for accessing the server.",
 						MarkdownDescription: "Authentication details (username and password) for accessing the server.",
 					},
@@ -152,6 +155,7 @@ func DestinationResourceSchema(ctx context.Context) schema.Schema {
 						Attributes: map[string]schema.Attribute{
 							"credentials": schema.StringAttribute{
 								Optional:            true,
+								Computed:            true,
 								Description:         "Credentials such as a token value",
 								MarkdownDescription: "Credentials such as a token value",
 							},
@@ -169,6 +173,7 @@ func DestinationResourceSchema(ctx context.Context) schema.Schema {
 							},
 						},
 						Optional:            true,
+						Computed:            true,
 						Description:         "Authorization token for accessing the server.",
 						MarkdownDescription: "Authorization token for accessing the server.",
 					},
@@ -176,6 +181,7 @@ func DestinationResourceSchema(ctx context.Context) schema.Schema {
 						Attributes: map[string]schema.Attribute{
 							"include": schema.BoolAttribute{
 								Optional:            true,
+								Computed:            true,
 								Description:         "If enabled, includes metadata in the write requests.",
 								MarkdownDescription: "If enabled, includes metadata in the write requests.",
 							},
@@ -200,6 +206,7 @@ func DestinationResourceSchema(ctx context.Context) schema.Schema {
 							},
 						},
 						Optional:            true,
+						Computed:            true,
 						Description:         "Configuration related to sending metadata to the remote server.",
 						MarkdownDescription: "Configuration related to sending metadata to the remote server.",
 					},
@@ -209,21 +216,25 @@ func DestinationResourceSchema(ctx context.Context) schema.Schema {
 								Attributes: map[string]schema.Attribute{
 									"ca_file": schema.StringAttribute{
 										Optional:            true,
+										Computed:            true,
 										Description:         "Path to a certificate authority file.",
 										MarkdownDescription: "Path to a certificate authority file.",
 									},
 									"cert_file": schema.StringAttribute{
 										Optional:            true,
+										Computed:            true,
 										Description:         "The client certificate file location.",
 										MarkdownDescription: "The client certificate file location.",
 									},
 									"key_file": schema.StringAttribute{
 										Optional:            true,
+										Computed:            true,
 										Description:         "The client private key location.",
 										MarkdownDescription: "The client private key location.",
 									},
 									"skip_verify": schema.BoolAttribute{
 										Optional:            true,
+										Computed:            true,
 										Description:         "If true the client will not verify the server's certificate.",
 										MarkdownDescription: "If true the client will not verify the server's certificate.",
 									},
@@ -234,16 +245,19 @@ func DestinationResourceSchema(ctx context.Context) schema.Schema {
 									},
 								},
 								Optional:            true,
+								Computed:            true,
 								Description:         "Certificates files.",
 								MarkdownDescription: "Certificates files.",
 							},
 							"from_secret": schema.StringAttribute{
 								Optional:            true,
+								Computed:            true,
 								Description:         "Secret containing a `tls.crt`, a `tls.key` and a `ca.crt` keys.\nBoth `tls.crt` and `tls.key` must be present.\nIf `ca.crt` is not present and `.trustBundle` is not set\nthe remote server certificate is not verified.",
 								MarkdownDescription: "Secret containing a `tls.crt`, a `tls.key` and a `ca.crt` keys.\nBoth `tls.crt` and `tls.key` must be present.\nIf `ca.crt` is not present and `.trustBundle` is not set\nthe remote server certificate is not verified.",
 							},
 							"trust_bundle": schema.StringAttribute{
 								Optional:            true,
+								Computed:            true,
 								Description:         "ConfigMap containing a set of trust bundles (key `trust-bundle.pem`) used to\nverify the remote server certificates.",
 								MarkdownDescription: "ConfigMap containing a set of trust bundles (key `trust-bundle.pem`) used to\nverify the remote server certificates.",
 							},
@@ -254,6 +268,7 @@ func DestinationResourceSchema(ctx context.Context) schema.Schema {
 							},
 						},
 						Optional:            true,
+						Computed:            true,
 						Description:         "TLS configuration for secure connection to the remote server.",
 						MarkdownDescription: "TLS configuration for secure connection to the remote server.",
 					},
@@ -283,11 +298,13 @@ func DestinationResourceSchema(ctx context.Context) schema.Schema {
 									Attributes: map[string]schema.Attribute{
 										"name": schema.StringAttribute{
 											Optional:            true,
+											Computed:            true,
 											Description:         "Header name",
 											MarkdownDescription: "Header name",
 										},
 										"value": schema.StringAttribute{
 											Optional:            true,
+											Computed:            true,
 											Description:         "Header value",
 											MarkdownDescription: "Header value",
 										},
@@ -299,6 +316,7 @@ func DestinationResourceSchema(ctx context.Context) schema.Schema {
 									},
 								},
 								Optional:            true,
+								Computed:            true,
 								Description:         "Custom HTTP headers to be sent along with each remote write request.",
 								MarkdownDescription: "Custom HTTP headers to be sent along with each remote write request.",
 							},
@@ -330,6 +348,7 @@ func DestinationResourceSchema(ctx context.Context) schema.Schema {
 							},
 						},
 						Optional:            true,
+						Computed:            true,
 						Description:         "Remote write options such as: Flush interval, Retries, etc.",
 						MarkdownDescription: "Remote write options such as: Flush interval, Retries, etc.",
 					},
